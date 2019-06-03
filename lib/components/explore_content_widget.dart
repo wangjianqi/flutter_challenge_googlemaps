@@ -9,6 +9,7 @@ class ExploreContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (currentExplorePercent != 0) {
+      ///位置变动
       return Positioned(
         top: realH(standardHeight + (162 - standardHeight) * currentExplorePercent),
         width: screenWidth,
@@ -24,6 +25,7 @@ class ExploreContentWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     Expanded(
+                      ///位置动画
                       child: Transform.translate(
                         offset: Offset(screenWidth / 3 * (1 - currentExplorePercent),
                             screenWidth / 3 / 2 * (1 - currentExplorePercent)),
@@ -42,6 +44,7 @@ class ExploreContentWidget extends StatelessWidget {
                       ),
                     ),
                     Expanded(
+                      ///位置动画
                       child: Transform.translate(
                         offset: Offset(-screenWidth / 3 * (1 - currentExplorePercent),
                             screenWidth / 3 / 2 * (1 - currentExplorePercent)),
@@ -140,6 +143,7 @@ class ExploreContentWidget extends StatelessWidget {
   }
 
   buildListItem(int index, String name) {
+    ///位置动画
     return Transform.translate(
       offset: Offset(0, index * realH(127) * (1 - currentExplorePercent)),
       child: Column(

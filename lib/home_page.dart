@@ -106,7 +106,9 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
   }
 
   void animateMenu(bool open) {
+    ///menu动画
     animationControllerMenu = AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+    ///动画曲线
     curve = CurvedAnimation(parent: animationControllerMenu, curve: Curves.ease);
     animation = Tween(begin: open ? 0.0 : 358.0, end: open ? 358.0 : 0.0).animate(curve)
       ..addListener(() {
@@ -132,6 +134,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
         height: screenHeight,
         child: Stack(
           children: <Widget>[
+            ///背景
             Image.asset(
               "assets/map.png",
               width: screenWidth,
@@ -160,7 +163,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
                 : const Padding(
                     padding: const EdgeInsets.all(0),
                   ),
-            //explore content
+            //explore content:Explore:展开的widget
             ExploreContentWidget(
               currentExplorePercent: currentExplorePercent,
             ),
@@ -249,6 +252,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
               left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
               child: GestureDetector(
                 onTap: () {
+                  ///开始动画
                   animateMenu(true);
                 },
                 child: Opacity(
@@ -274,6 +278,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
               ),
             ),
             //menu
+            ///左边menu
             MenuWidget(currentMenuPercent: currentMenuPercent, animateMenu: animateMenu),
           ],
         ),
@@ -284,6 +289,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
   @override
   void initState() {
     super.initState();
+    ///隐藏状态栏
     SystemChrome.setEnabledSystemUIOverlays([]);
   }
 

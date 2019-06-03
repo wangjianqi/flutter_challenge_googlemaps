@@ -6,8 +6,9 @@ class ExploreWidget extends StatelessWidget {
 
   final double currentExplorePercent;
 
+  ///回调带参数
   final Function(bool) animateExplore;
-
+  ///拖拽回调
   final Function(DragUpdateDetails) onVerticalDragUpdate;
   final Function() onPanDown;
 
@@ -28,11 +29,13 @@ class ExploreWidget extends StatelessWidget {
     return Positioned(
         bottom: realH(-122 * currentSearchPercent),
         left: (screenWidth - realW(159 + (standardWidth - 159) * currentExplorePercent)) / 2,
+        ///点击手势
         child: GestureDetector(
           onTap: () {
             animateExplore(!isExploreOpen);
           },
           onVerticalDragUpdate: onVerticalDragUpdate,
+          ///手势结束，判断相应哪种
           onVerticalDragEnd: (_) {
             _dispatchExploreOffset();
           },
@@ -43,6 +46,7 @@ class ExploreWidget extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               width: realW(159 + (standardWidth - 159) * currentExplorePercent),
               height: realH(122 + (766 - 122) * currentExplorePercent),
+              ///背景
               decoration: BoxDecoration(
                   gradient: LinearGradient(begin: Alignment.topCenter, colors: [
                     Color(0xFF5496FF),
@@ -53,6 +57,7 @@ class ExploreWidget extends StatelessWidget {
                       topRight: Radius.circular(realW(80 + (50 - 80) * currentExplorePercent)))),
               child: Stack(
                 children: [
+                  ///Explore
                   Positioned(
                       top: realH(65 + (-5 * currentExplorePercent)),
                       left: realW(49 + (91 - 49) * currentExplorePercent),
@@ -60,6 +65,7 @@ class ExploreWidget extends StatelessWidget {
                         "Explore",
                         style: TextStyle(color: Colors.white, fontSize: realW(18 + (32 - 18) * currentExplorePercent)),
                       )),
+                  ///location
                   Positioned(
                       top: realH(20 + (60 - 20) * currentExplorePercent),
                       left: realW(63 + (44 - 63) * currentExplorePercent),
@@ -68,6 +74,7 @@ class ExploreWidget extends StatelessWidget {
                         size: realW(34),
                         color: Colors.white,
                       )),
+                  ///arrow
                   Positioned(
                       top: realH(currentExplorePercent < 0.9
                           ? realH(-35)

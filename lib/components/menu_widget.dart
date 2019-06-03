@@ -36,6 +36,7 @@ class MenuWidget extends StatelessWidget {
                       child: CustomScrollView(
                         physics: NeverScrollableScrollPhysics(),
                         slivers: <Widget>[
+                          ///
                           SliverToBoxAdapter(
                             child: Container(
                               height: realH(236),
@@ -47,6 +48,7 @@ class MenuWidget extends StatelessWidget {
                                   ])),
                               child: Stack(
                                 children: <Widget>[
+                                  ///头像
                                   Positioned(
                                     left: realW(10),
                                     bottom: realH(27),
@@ -56,6 +58,7 @@ class MenuWidget extends StatelessWidget {
                                       height: realH(120),
                                     ),
                                   ),
+                                  ///label
                                   Positioned(
                                     left: realW(60),
                                     bottom: realH(18),
@@ -112,8 +115,10 @@ class MenuWidget extends StatelessWidget {
                               ),
                             ),
                           ),
+                          ///padding
                           SliverPadding(
                             padding: EdgeInsets.only(top: realH(34), bottom: realH(50), right: realW(37)),
+                            ///SliverList
                             sliver: SliverFixedExtentList(
                               itemExtent: realH(56),
                               delegate: new SliverChildBuilderDelegate((BuildContext context, int index) {
