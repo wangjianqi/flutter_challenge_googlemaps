@@ -15,9 +15,11 @@ class MenuWidget extends StatelessWidget {
     return currentMenuPercent != 0
         ? Positioned(
             left: realW(-358 + 358 * currentMenuPercent),
+            ///给Positioned设置宽和高
             width: realW(358),
             height: screenHeight,
             child: Opacity(
+              ///透明度渐变
               opacity: currentMenuPercent,
               child: Container(
                 decoration: BoxDecoration(
@@ -29,6 +31,7 @@ class MenuWidget extends StatelessWidget {
                 ),
                 child: Stack(
                   children: <Widget>[
+                    ///监听
                     NotificationListener<OverscrollIndicatorNotification>(
                       onNotification: (notification) {
                         notification.disallowGlow();

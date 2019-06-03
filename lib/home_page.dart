@@ -18,6 +18,7 @@ class GoogleMapPage extends StatefulWidget {
 }
 
 class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin {
+  ///控制动画
   AnimationController animationControllerExplore;
   AnimationController animationControllerSearch;
   AnimationController animationControllerMenu;
@@ -29,6 +30,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
   /// get currentOffset percent
   get currentExplorePercent => max(0.0, min(1.0, offsetExplore / (760.0 - 122.0)));
   get currentSearchPercent => max(0.0, min(1.0, offsetSearch / (347 - 68.0)));
+  ///获取比例
   get currentMenuPercent => max(0.0, min(1.0, offsetMenu / 358));
 
   var offsetExplore = 0.0;
@@ -126,6 +128,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    ///首先计算宽度和高度
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -151,6 +154,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
               onPanDown: () => animationControllerExplore?.stop(),
             ),
             //blur
+            ///搜索页面的模糊背景
             offsetSearch != 0
                 ? BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 10 * currentSearchPercent, sigmaY: 10 * currentSearchPercent),
@@ -163,15 +167,18 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
                 : const Padding(
                     padding: const EdgeInsets.all(0),
                   ),
-            //explore content:Explore:展开的widget
+            //explore content:
+            ///Explore:展开的widget
             ExploreContentWidget(
               currentExplorePercent: currentExplorePercent,
             ),
             //recent search
+            ///搜索上面的Widget
             RecentSearchWidget(
               currentSearchPercent: currentSearchPercent,
             ),
             //search menu background
+            ///home和work背景图
             offsetSearch != 0
                 ? Positioned(
                     bottom: realH(88),
@@ -192,6 +199,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
                     padding: const EdgeInsets.all(0),
                   ),
             //search menu
+            ///搜索 home和work部分
             SearchMenuWidget(
               currentSearchPercent: currentSearchPercent,
             ),
@@ -205,6 +213,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
               onPanDown: () => animationControllerSearch?.stop(),
             ),
             //search back
+            ///搜索带有返回按钮的
             SearchBackWidget(
               currentSearchPercent: currentSearchPercent,
               animateSearch: animateSearch,
@@ -263,6 +272,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.only(left: realW(17)),
                     child: Icon(
+                      ///菜单
                       Icons.menu,
                       size: realW(34),
                     ),
@@ -271,6 +281,7 @@ class _GoogleMapState extends State<GoogleMapPage> with TickerProviderStateMixin
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(realW(36)), topRight: Radius.circular(realW(36))),
                         boxShadow: [
+                          ///设置阴影
                           BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.3), blurRadius: realW(36)),
                         ]),
                   ),
